@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRapportsRouteImport } from './routes/_app.rapports'
+import { Route as AppHistoriqueRouteImport } from './routes/_app.historique'
 import { Route as AppDepensesRouteImport } from './routes/_app.depenses'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppContactsRouteImport } from './routes/_app.contacts'
@@ -30,6 +31,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppRapportsRoute = AppRapportsRouteImport.update({
   id: '/rapports',
   path: '/rapports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHistoriqueRoute = AppHistoriqueRouteImport.update({
+  id: '/historique',
+  path: '/historique',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDepensesRoute = AppDepensesRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/depenses': typeof AppDepensesRoute
+  '/historique': typeof AppHistoriqueRoute
   '/rapports': typeof AppRapportsRoute
 }
 export interface FileRoutesByTo {
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/depenses': typeof AppDepensesRoute
+  '/historique': typeof AppHistoriqueRoute
   '/rapports': typeof AppRapportsRoute
 }
 export interface FileRoutesById {
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/_app/contacts': typeof AppContactsRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/depenses': typeof AppDepensesRoute
+  '/_app/historique': typeof AppHistoriqueRoute
   '/_app/rapports': typeof AppRapportsRoute
 }
 export interface FileRouteTypes {
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/dashboard'
     | '/depenses'
+    | '/historique'
     | '/rapports'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/dashboard'
     | '/depenses'
+    | '/historique'
     | '/rapports'
   id:
     | '__root__'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '/_app/contacts'
     | '/_app/dashboard'
     | '/_app/depenses'
+    | '/_app/historique'
     | '/_app/rapports'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,13 @@ declare module '@tanstack/react-router' {
       path: '/rapports'
       fullPath: '/rapports'
       preLoaderRoute: typeof AppRapportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/historique': {
+      id: '/_app/historique'
+      path: '/historique'
+      fullPath: '/historique'
+      preLoaderRoute: typeof AppHistoriqueRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/depenses': {
@@ -190,6 +209,7 @@ interface AppRouteChildren {
   AppContactsRoute: typeof AppContactsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppDepensesRoute: typeof AppDepensesRoute
+  AppHistoriqueRoute: typeof AppHistoriqueRoute
   AppRapportsRoute: typeof AppRapportsRoute
 }
 
@@ -199,6 +219,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppContactsRoute: AppContactsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppDepensesRoute: AppDepensesRoute,
+  AppHistoriqueRoute: AppHistoriqueRoute,
   AppRapportsRoute: AppRapportsRoute,
 }
 
