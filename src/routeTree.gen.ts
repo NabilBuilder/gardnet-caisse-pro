@@ -13,6 +13,7 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppDepensesRouteImport } from './routes/_app.depenses'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppContactsRouteImport } from './routes/_app.contacts'
 import { Route as AppCategoriesRouteImport } from './routes/_app.categories'
 import { Route as AppAvancesRouteImport } from './routes/_app.avances'
 
@@ -35,6 +36,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppContactsRoute = AppContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCategoriesRoute = AppCategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/avances': typeof AppAvancesRoute
   '/categories': typeof AppCategoriesRoute
+  '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/depenses': typeof AppDepensesRoute
 }
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/avances': typeof AppAvancesRoute
   '/categories': typeof AppCategoriesRoute
+  '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/depenses': typeof AppDepensesRoute
 }
@@ -66,20 +74,34 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_app/avances': typeof AppAvancesRoute
   '/_app/categories': typeof AppCategoriesRoute
+  '/_app/contacts': typeof AppContactsRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/depenses': typeof AppDepensesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/avances' | '/categories' | '/dashboard' | '/depenses'
+  fullPaths:
+    | '/'
+    | '/avances'
+    | '/categories'
+    | '/contacts'
+    | '/dashboard'
+    | '/depenses'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/avances' | '/categories' | '/dashboard' | '/depenses'
+  to:
+    | '/'
+    | '/avances'
+    | '/categories'
+    | '/contacts'
+    | '/dashboard'
+    | '/depenses'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_app/avances'
     | '/_app/categories'
+    | '/_app/contacts'
     | '/_app/dashboard'
     | '/_app/depenses'
   fileRoutesById: FileRoutesById
@@ -119,6 +141,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/contacts': {
+      id: '/_app/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof AppContactsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/categories': {
       id: '/_app/categories'
       path: '/categories'
@@ -139,6 +168,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAvancesRoute: typeof AppAvancesRoute
   AppCategoriesRoute: typeof AppCategoriesRoute
+  AppContactsRoute: typeof AppContactsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppDepensesRoute: typeof AppDepensesRoute
 }
@@ -146,6 +176,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAvancesRoute: AppAvancesRoute,
   AppCategoriesRoute: AppCategoriesRoute,
+  AppContactsRoute: AppContactsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppDepensesRoute: AppDepensesRoute,
 }
