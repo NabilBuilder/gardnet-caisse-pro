@@ -79,10 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Gardnet Caisse — Gestion de caisse" },
       { name: "description", content: "Application interne de gestion de caisse du Groupe Gardnet Services." },
-      { property: "og:title", content: "Gardnet Caisse" },
-      { property: "og:description", content: "Application interne de gestion de caisse." },
+      { property: "og:title", content: "Gardnet Caisse — Gestion de caisse" },
+      { property: "og:description", content: "Application interne de gestion de caisse du Groupe Gardnet Services." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Gardnet Caisse — Gestion de caisse" },
+      { name: "twitter:description", content: "Application interne de gestion de caisse du Groupe Gardnet Services." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/646e9574-e79c-48bc-a823-44d69ea20a8d/id-preview-3c8a9ffd--3f1479e1-5915-46e9-ad67-399113f8123f.lovable.app-1784501556503.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/646e9574-e79c-48bc-a823-44d69ea20a8d/id-preview-3c8a9ffd--3f1479e1-5915-46e9-ad67-399113f8123f.lovable.app-1784501556503.png" },
     ],
     links: [
       {
