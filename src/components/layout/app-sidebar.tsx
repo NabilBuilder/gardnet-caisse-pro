@@ -1,15 +1,5 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import {
-  LayoutDashboard,
-  Receipt,
-  ArrowUpRight,
-  Tags,
-  Users,
-  FileBarChart,
-  History,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { LogOut } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -22,28 +12,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Logo } from "@/components/logo";
-
-const mainItems = [
-  { title: "Accueil", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Dépenses", url: "/depenses", icon: Receipt },
-  { title: "Avances", url: "/avances", icon: ArrowUpRight },
-  { title: "Catégories", url: "/categories", icon: Tags },
-  { title: "Contacts", url: "/contacts", icon: Users },
-];
-
-const toolsItems = [
-  { title: "Rapports", url: "/rapports", icon: FileBarChart },
-  { title: "Historique", url: "/historique", icon: History },
-  { title: "Paramètres", url: "/parametres", icon: Settings },
-];
+import { Logo } from "@/components/layout/logo";
+import { MAIN_NAV, TOOLS_NAV } from "@/constants/navigation";
+import type { NavItem } from "@/types";
 
 export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   const isActive = (url: string) => pathname === url;
 
-  const renderItem = (item: { title: string; url: string; icon: typeof LayoutDashboard }) => (
+  const renderItem = (item: NavItem) => (
     <SidebarMenuItem key={item.url}>
       <SidebarMenuButton
         asChild
@@ -71,7 +49,7 @@ export function AppSidebar() {
             Principal
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>{mainItems.map(renderItem)}</SidebarMenu>
+            <SidebarMenu>{MAIN_NAV.map(renderItem)}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
@@ -80,7 +58,7 @@ export function AppSidebar() {
             Outils
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>{toolsItems.map(renderItem)}</SidebarMenu>
+            <SidebarMenu>{TOOLS_NAV.map(renderItem)}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
