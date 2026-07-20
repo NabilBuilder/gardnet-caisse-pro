@@ -1,47 +1,21 @@
-/** Types partagés de l'application Gardnet Caisse. */
+/** Point d'entrée unique des types métier. */
 import type { LucideIcon } from "lucide-react";
+
+export * from "./common";
+export * from "./mois";
+export * from "./categorie";
+export * from "./contact";
+export * from "./depense";
+export * from "./avance";
+export * from "./utilisateur";
+export * from "./historique";
+
+/* --- Types UI conservés (préexistants). --- */
 
 export interface NavItem {
   title: string;
   url: string;
   icon: LucideIcon;
-}
-
-export interface Categorie {
-  id: string;
-  nom: string;
-  description?: string;
-}
-
-export interface Contact {
-  id: string;
-  nom: string;
-  fonction?: string;
-  email?: string;
-  whatsapp?: string;
-  actif: boolean;
-}
-
-export interface Depense {
-  id: string;
-  date: string;
-  categorieId: string;
-  description?: string;
-  montant: number;
-}
-
-export interface Avance {
-  id: string;
-  date: string;
-  montant: number;
-  observation?: string;
-}
-
-export interface HistoriqueEntry {
-  id: string;
-  date: string;
-  utilisateur: string;
-  action: string;
 }
 
 export interface StatItem {
@@ -50,4 +24,15 @@ export interface StatItem {
   icon: LucideIcon;
   accent: string;
   trend?: string;
+}
+
+/**
+ * Alias rétro-compatibles pour le code UI existant qui référence encore
+ * l'ancienne interface `HistoriqueEntry`.
+ */
+export interface HistoriqueEntry {
+  id: string;
+  date: string;
+  utilisateur: string;
+  action: string;
 }
